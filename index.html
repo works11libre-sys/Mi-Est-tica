@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Estética | Reserva Tu Brillo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #d4a373; /* Oro Rosado */
+            --accent: #faedcd;
+            --dark: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.7);
+            --shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --radius: 30px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #fefae0;
+            color: var/(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- NAVBAR PÍLDORA --- */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        nav {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 12px 30px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 20px;
+        }
+
+        .cta-btn {
+            background: var(--primary);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.4);
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-btn:hover::before { left: 150%; }
+
+        /* --- CATALOGO (SLIDER) --- */
+        .section-title {
+            text-align: center;
+            padding: 80px 20px 40px;
+            font-size: 2.5rem;
+        }
+
+        .slider-container {
+            padding: 20px;
+            overflow-x: auto;
+            display: flex;
+            gap: 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .slider-container::-webkit-scrollbar { display: none; }
+
+        .service-card {
+            min-width: 300px;
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            scroll-snap-align: center;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin: 10px 0;
+        }
+
+        .order-btn {
+            width: 100%;
+            border: none;
+            background: var(--dark);
+            color: white;
+            padding: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* --- STEPPER --- */
+        .stepper {
+            display: flex;
+            justify-content: space-around;
+            padding: 60px 20px;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: var(--accent);
+        }
+
+        .step {
+            text-align: center;
+            max-width: 200px;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+            color: var(--primary);
+        }
+
+        /* --- WHATSAPP FLOATING --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-container">
+        <nav>
+            <div class="logo">LUMIÈRE</div>
+            <a href="#catalogo" style="text-decoration:none; color:var(--dark); font-size: 0.9rem; font-weight:600;">Servicios</a>
+            <a href="https://wa.me/521234567890" class="cta-btn" style="padding: 8px 20px; font-size: 0.8rem;">RESERVAR YA</a>
+        </nav>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <p style="letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px;">Wellness & Beauty</p>
+            <h1>Resalta tu belleza natural</h1>
+            <p style="margin-bottom: 30px; font-size: 1.1rem;">Servicios premium de uñas, pestañas y estilismo profesional.</p>
+            <a href="#catalogo" class="cta-btn">VER SERVICIOS</a>
+        </div>
+    </section>
+
+    <h2 class="section-title">Nuestros Servicios</h2>
+    <div class="slider-container" id="catalogo">
+        <div class="service-card" data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1632345033839-247e99714b48?auto=format&fit=crop&q=80&w=500" alt="Diseño de Uñas">
+            <div class="card-body">
+                <h3>Uñas Sculpt & Art</h3>
+                <p>Manicura rusa y diseño personalizado a mano alzada.</p>
+                <p class="price">$450 MXN</p>
+                <button class="order-btn" onclick="sendOrder('Uñas Sculpt', '450', 'Manicura rusa')">
+                    <i data-lucide="calendar"></i> Reservar
+                </button>
+            </div>
+        </div>
+
+        <div class="service-card" data-aos="fade-left" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&q=80&w=500" alt="Pestañas">
+            <div class="card-body">
+                <h3>Lifting de Pestañas</h3>
+                <p>Efecto de longitud natural con nutrición de keratina.</p>
+                <p class="price">$650 MXN</p>
+                <button class="order-btn" onclick="sendOrder('Lifting de Pestañas', '650', 'Efecto natural')">
+                    <i data-lucide="calendar"></i> Reservar
+                </button>
+            </div>
+        </div>
+
+        <div class="service-card" data-aos="fade-left" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=500" alt="Cortes">
+            <div class="card-body">
+                <h3>Corte & Estilo</h3>
+                <p>Tendencias internacionales adaptadas a tu rostro.</p>
+                <p class="price">$380 MXN</p>
+                <button class="order-btn" onclick="sendOrder('Corte & Estilo', '380', 'Tendencia')">
+                    <i data-lucide="calendar"></i> Reservar
+                </button>
+            </div>
+        </div>
+
+        <div class="service-card" data-aos="fade-left" data-aos-delay="300">
+            <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&q=80&w=500" alt="Tintes">
+            <div class="card-body">
+                <h3>Balayage Premium</h3>
+                <p>Degradado perfecto sin dañar la fibra capilar.</p>
+                <p class="price">$1,200 MXN</p>
+                <button class="order-btn" onclick="sendOrder('Balayage Premium', '1200', 'Degradado')">
+                    <i data-lucide="calendar"></i> Reservar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section class="stepper" data-aos="fade-up">
+        <div class="step">
+            <div class="step-icon"><i data-lucide="mouse-pointer-2"></i></div>
+            <h4>1. Eliges</h4>
+            <p>Selecciona el servicio que deseas.</p>
+        </div>
+        <div class="step">
+            <div class="step-icon"><i data-lucide="message-square"></i></div>
+            <h4>2. Confirmas</h4>
+            <p>Acordamos fecha y hora por WhatsApp.</p>
+        </div>
+        <div class="step">
+            <div class="step-icon"><i data-lucide="sparkles"></i></div>
+            <h4>3. Brillas</h4>
+            <p>Te esperamos para consentirte.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3>LUMIÈRE</h3>
+                <p>Tu refugio de belleza.</p>
+            </div>
+            <div>
+                <h4>Horarios</h4>
+                <p>Lun - Sáb: 10:00 AM - 8:00 PM</p>
+                <p>Dom: Cerrado</p>
+            </div>
+            <div>
+                <h4>Síguenos</h4>
+                <div style="display:flex; justify-content:center; gap:15px; margin-top:10px;">
+                    <i data-lucide="instagram"></i>
+                    <i data-lucide="facebook"></i>
+                </div>
+            </div>
+        </div>
+        <p style="margin-top:40px; opacity:0.6; font-size:0.8rem;">&copy; 2026 Lumière Estética. Todos los derechos reservados.</p>
+    </footer>
+
+    <a href="https://wa.me/521234567890" class="whatsapp-float">
+        <i data-lucide="message-circle" size="32"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar Iconos y Animaciones
+        lucide.createIcons();
+        AOS.init({ duration: 1000, once: true });
+
+        // Función de Envío a WhatsApp
+        function sendOrder(name, price, desc) {
+            const phoneNumber = "521234567890"; // Reemplazar con número real
+            const message = `¡Hola! Me interesa este [SERVICIO]: ${name} - Precio: $${price} MXN. (${desc}). ¿Tienen disponibilidad para una cita?`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
