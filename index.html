@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumière Estética | Reserva Tu Brillo</title>
+    <title>Lumière Estética | Reserva Premium</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -15,98 +15,83 @@
             --accent: #faedcd;
             --dark: #1a1a1a;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.9);
+            --glass: rgba(255, 255, 255, 0.95);
             --shadow: 0 20px 40px rgba(0,0,0,0.08);
             --radius: 30px;
         }
 
-        /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
         body { background-color: #fefae0; color: var(--dark); overflow-x: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* --- NAVBAR --- */
+        /* --- NAV --- */
         .nav-container { position: fixed; top: 20px; width: 100%; display: flex; justify-content: center; z-index: 1000; }
         nav {
-            background: var(--glass); backdrop-filter: blur(15px); padding: 10px 25px;
+            background: var(--glass); backdrop-filter: blur(15px); padding: 12px 30px;
             border-radius: 50px; display: flex; align-items: center; gap: 20px;
             border: 1px solid rgba(255,255,255,0.3); box-shadow: var(--shadow);
         }
-        .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--primary); letter-spacing: 2px; }
+        .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; color: var(--primary); letter-spacing: 2px; }
 
         /* --- HERO --- */
         .hero {
-            height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover; background-position: center; color: white; padding: 20px;
+            background-size: cover; background-position: center; color: white;
         }
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 20px; }
 
-        /* --- CARDS & GRID --- */
-        .section-title { text-align: center; padding: 80px 20px 30px; font-size: 2.2rem; color: var(--primary); }
+        /* --- GRID & CARDS --- */
+        .section-title { text-align: center; padding: 60px 20px 20px; font-size: 2.2rem; color: var(--primary); }
         .grid-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 
         .card {
             background: var(--white); border-radius: var(--radius); overflow: hidden;
-            box-shadow: var(--shadow); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid transparent; cursor: pointer; text-align: center; padding-bottom: 20px;
+            box-shadow: var(--shadow); transition: 0.4s; border: 2px solid transparent; cursor: pointer; text-align: center;
         }
-        .card:hover { transform: translateY(-10px); }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
         .card.selected { border-color: var(--primary); background: var(--accent); }
-        .card img { width: 100%; height: 220px; object-fit: cover; }
-        .card h3 { margin: 15px 0 5px; font-size: 1.3rem; }
-        .price { color: var(--primary); font-weight: 700; font-size: 1.2rem; margin-top: 5px; }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
 
-        /* --- FORMULARIO DE RESERVA --- */
-        .booking-section { background: var(--white); padding: 80px 20px; border-radius: 60px 60px 0 0; margin-top: 50px; }
-        .form-container { max-width: 700px; margin: 0 auto; }
-        
-        .input-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
-        input, select { 
-            width: 100%; padding: 16px; border-radius: 15px; border: 1px solid #eee; 
-            background: #fdfdfd; font-size: 1rem; transition: 0.3s;
-        }
-        input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.1); }
+        /* --- FORM --- */
+        .booking-section { background: var(--white); padding: 80px 20px; border-radius: 60px 60px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); }
+        .form-container { max-width: 650px; margin: 0 auto; }
+        input, select { width: 100%; padding: 15px; border-radius: 15px; border: 1px solid #eee; background: #fdfdfd; margin-bottom: 20px; font-size: 1rem; }
+        label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 5px; }
 
-        /* --- HORARIOS (SLOTS) --- */
-        .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 12px; margin-top: 15px; }
+        /* --- HORARIOS --- */
+        .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); gap: 10px; margin-top: 10px; }
         .slot {
-            padding: 14px; background: #f5f5f5; border-radius: 12px; text-align: center;
-            cursor: pointer; transition: 0.3s; font-weight: 600; font-size: 0.9rem;
+            padding: 12px; background: #f5f5f5; border-radius: 12px; text-align: center;
+            cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.3s;
         }
-        .slot:hover:not(.occupied) { background: var(--accent); color: var(--primary); }
-        .slot.selected { background: var(--primary); color: white; transform: scale(1.05); }
-        .slot.occupied { opacity: 0.2; cursor: not-allowed; text-decoration: line-through; background: #ddd; }
+        .slot:hover:not(.occupied) { background: var(--accent); }
+        .slot.selected { background: var(--primary); color: white; }
+        .slot.occupied { opacity: 0.2; cursor: not-allowed; text-decoration: line-through; }
 
-        /* --- BOTONES --- */
+        /* --- BUTTONS --- */
         .cta-btn {
-            background: var(--primary); color: white; padding: 18px 40px; border-radius: 50px;
-            text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer;
-            display: inline-block; width: 100%; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
+            background: var(--primary); color: white; padding: 18px; border-radius: 50px;
+            border: none; cursor: pointer; width: 100%; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
         }
-        .cta-btn:hover { background: var(--dark); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .cta-btn:hover { background: var(--dark); }
+        .ws-btn { background: #25d366 !important; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; }
 
         /* --- TICKET --- */
         #ticket {
             display: none; background: #fff; padding: 40px; border-radius: 25px;
             max-width: 450px; margin: 30px auto; border: 2px dashed var(--primary);
-            text-align: center; animation: fadeInUp 0.6s ease;
+            text-align: center; animation: fadeInUp 0.5s ease;
         }
-        .ticket-header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 20px; }
+        .ticket-item { display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid #f9f9f9; padding-bottom: 5px; }
 
-        /* --- ADMIN SECTION --- */
-        .admin-section { padding: 40px 20px; background: #eee; text-align: center; }
-        .admin-table { width: 100%; max-width: 1000px; margin: 20px auto; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; font-size: 0.8rem; }
-        .admin-table th, .admin-table td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
-        .admin-table th { background: var(--primary); color: white; }
+        /* --- ADMIN --- */
+        .admin-area { padding: 40px 20px; background: #f4f4f4; }
+        .admin-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; font-size: 0.8rem; }
+        .admin-table th { background: var(--primary); color: white; padding: 15px; }
+        .admin-table td { padding: 12px; border-bottom: 1px solid #eee; }
 
-        footer { background: var(--dark); color: white; padding: 60px 20px; text-align: center; }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -114,263 +99,187 @@
     <div class="nav-container">
         <nav>
             <div class="logo">LUMIÈRE</div>
-            <a href="#especialistas" style="text-decoration:none; color:var(--dark); font-size: 0.75rem; font-weight:600; text-transform:uppercase;">Especialistas</a>
-            <a href="#reservar" style="text-decoration:none; color:var(--primary); font-size: 0.75rem; font-weight:800; text-transform:uppercase;">Reservar</a>
+            <a href="#reservar" style="text-decoration:none; color:var(--primary); font-weight:700; font-size:0.8rem;">RESERVAR CITA</a>
         </nav>
     </div>
 
     <section class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <h1 style="font-style: italic;">Resalta tu Brillo</h1>
-            <p style="letter-spacing: 3px; font-weight: 300;">ESTÉTICA INTEGRAL & BIENESTAR PREMIUM</p>
+        <div data-aos="zoom-in">
+            <h1 style="font-style: italic;">Tu Belleza, Nuestra Pasión</h1>
+            <p style="letter-spacing: 4px; font-size: 0.8rem;">BIENVENIDA AL LUJO</p>
         </div>
     </section>
 
-    <h2 class="section-title" id="especialistas">Nuestras Especialistas</h2>
+    <h2 class="section-title" id="especialistas">Selecciona a tu Especialista</h2>
     <div class="grid-container">
-        <div class="card" onclick="selectExpert('Elena (Nails)', this)" data-aos="fade-up">
-            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400" alt="Elena">
-            <h3>Elena</h3>
-            <p style="font-style: italic;">Master en Manicura Rusa</p>
+        <div class="card" onclick="setExpert('Elena (Uñas)', this)">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400">
+            <div class="card-body"><h3>Elena</h3><p>Nails Specialist</p></div>
         </div>
-        <div class="card" onclick="selectExpert('Sofía (Lashes)', this)" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&q=80&w=400" alt="Sofía">
-            <h3>Sofía</h3>
-            <p style="font-style: italic;">Lash Artist & Diseño de Cejas</p>
+        <div class="card" onclick="setExpert('Sofía (Pestañas)', this)">
+            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&q=80&w=400">
+            <div class="card-body"><h3>Sofía</h3><p>Lash Artist</p></div>
         </div>
-        <div class="card" onclick="selectExpert('Clara (Hair)', this)" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=400" alt="Clara">
-            <h3>Clara</h3>
-            <p style="font-style: italic;">Colorimetría & Estilismo</p>
+        <div class="card" onclick="setExpert('Clara (Cabello)', this)">
+            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=400">
+            <div class="card-body"><h3>Clara</h3><p>Hair Stylist</p></div>
         </div>
     </div>
 
-    <h2 class="section-title">Servicios Destacados</h2>
+    <h2 class="section-title">Elige el Servicio</h2>
     <div class="grid-container">
-        <div class="card" onclick="selectService('Uñas Sculpt & Gel', 450, this)">
-            <div style="padding: 25px;">
-                <h3>Uñas Sculpt</h3>
-                <p class="price">$450 MXN</p>
-                <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">Duración: 90 min</p>
-            </div>
+        <div class="card" onclick="setService('Uñas Sculpt', 450, this)">
+            <div class="card-body"><h3>Uñas Sculpt</h3><p style="color:var(--primary); font-weight:700;">$450 MXN</p></div>
         </div>
-        <div class="card" onclick="selectService('Lifting + Tinte', 600, this)">
-            <div style="padding: 25px;">
-                <h3>Lifting de Pestañas</h3>
-                <p class="price">$600 MXN</p>
-                <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">Duración: 60 min</p>
-            </div>
+        <div class="card" onclick="setService('Lifting Pestañas', 600, this)">
+            <div class="card-body"><h3>Lifting Pestañas</h3><p style="color:var(--primary); font-weight:700;">$600 MXN</p></div>
         </div>
-        <div class="card" onclick="selectService('Balayage / Color', 1350, this)">
-            <div style="padding: 25px;">
-                <h3>Balayage Premium</h3>
-                <p class="price">$1,350 MXN</p>
-                <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">Duración: 180 min</p>
-            </div>
+        <div class="card" onclick="setService('Balayage Premium', 1400, this)">
+            <div class="card-body"><h3>Balayage Premium</h3><p style="color:var(--primary); font-weight:700;">$1400 MXN</p></div>
         </div>
     </div>
 
     <section class="booking-section" id="reservar">
         <div class="form-container">
-            <h2 style="text-align: center; margin-bottom: 40px; font-family: 'Playfair Display';">Agenda tu Cita</h2>
-            
-            <form id="lumiereForm">
-                <div class="grid-container" style="grid-template-columns: 1fr 1fr; padding: 0; gap: 15px; margin-bottom: 0;">
-                    <div class="input-group">
-                        <label>Tu Nombre</label>
-                        <input type="text" id="c_name" required placeholder="Nombre">
-                    </div>
-                    <div class="input-group">
-                        <label>WhatsApp</label>
-                        <input type="tel" id="c_tel" required placeholder="Número">
-                    </div>
-                </div>
+            <form id="bookingForm">
+                <label>Nombre de la clienta</label>
+                <input type="text" id="name" required placeholder="Ej: María Pérez">
+                
+                <label>Teléfono (WhatsApp)</label>
+                <input type="tel" id="tel" required placeholder="52...">
 
-                <div class="input-group">
-                    <label>Fecha deseada</label>
-                    <input type="date" id="c_date" required>
-                </div>
+                <label>Fecha de la cita</label>
+                <input type="date" id="date" required>
 
-                <div class="input-group">
-                    <label>Horarios disponibles para <span id="expertSelectedDisplay" style="color: var(--primary); font-weight: 800;">...</span></label>
-                    <div id="slotsContainer" class="slots-grid">
-                        </div>
-                </div>
+                <label>Horarios para <span id="expertName" style="color:var(--primary);">...</span></label>
+                <div id="slots" class="slots-grid"></div>
 
-                <div style="text-align: center; margin-top: 40px;">
-                    <p id="priceDisplay" style="font-size: 1.4rem; font-weight: 700; margin-bottom: 25px;">TOTAL: $0.00</p>
-                    <button type="submit" class="cta-btn">Finalizar Reserva</button>
+                <div style="margin-top:30px; text-align:center;">
+                    <h3 id="totalPrice" style="margin-bottom:20px;">Total: $0.00</h3>
+                    <button type="submit" class="cta-btn">Agendar mi Cita</button>
                 </div>
             </form>
 
             <div id="ticket">
-                <div class="ticket-header">
-                    <h2 style="color: var(--primary); letter-spacing: 3px;">LUMIÈRE</h2>
-                    <p style="font-size: 0.8rem; margin-top: 5px;">ESTÉTICA & SPA</p>
+                <div style="border-bottom: 2px solid var(--accent); margin-bottom:20px; padding-bottom:10px;">
+                    <h2 style="color:var(--primary); letter-spacing:4px;">LUMIÈRE</h2>
+                    <p style="font-size:0.7rem;">CONFIRMACIÓN DE RESERVA</p>
                 </div>
-                <div id="ticketData" style="text-align: left; line-height: 2.2; font-size: 0.9rem; color: #444;">
-                </div>
-                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
-                <p style="font-size: 0.7rem; color: #999;">¡Presenta una captura al llegar!</p>
-                <button onclick="window.location.reload()" class="cta-btn" style="margin-top:20px; background: #333; padding: 10px;">Nueva Cita</button>
+                <div id="ticketInfo" style="text-align:left;"></div>
+                <p style="font-weight:700; font-size:1.2rem; margin-top:20px; color:var(--primary);" id="ticketTotal"></p>
+                
+                <a href="#" id="wsConfirmBtn" class="cta-btn ws-btn" target="_blank">
+                    <i data-lucide="message-circle"></i> CONFIRMAR POR WHATSAPP
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="admin-section">
-        <h3>Panel de Control (Citas Registradas)</h3>
+    <section class="admin-area">
+        <h3 style="text-align:center; margin-bottom:20px;">Agenda de Hoy</h3>
         <table class="admin-table">
-            <thead>
-                <tr>
-                    <th>Cliente</th>
-                    <th>Especialista</th>
-                    <th>Servicio</th>
-                    <th>Fecha / Hora</th>
-                </tr>
-            </thead>
-            <tbody id="adminBody">
-                </tbody>
+            <thead><tr><th>Cliente</th><th>Experta</th><th>Servicio</th><th>Día/Hora</th></tr></thead>
+            <tbody id="adminList"></tbody>
         </table>
-        <button onclick="clearDatabase()" style="color: red; background: none; border: none; cursor: pointer; font-size: 0.7rem; margin-top: 10px;">[Borrar todas las citas]</button>
     </section>
 
-    <footer>
-        <p>LUMIÈRE ESTÉTICA PREMIUM &copy; 2026</p>
+    <footer style="background:var(--dark); color:white; padding:40px; text-align:center;">
+        <p>LUMIÈRE ESTÉTICA &copy; 2026</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init();
         lucide.createIcons();
 
-        let selExpert = "";
-        let selService = "";
-        let selPrice = 0;
-        let selTime = null;
-        const workHours = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30", "19:00"];
+        let expert = "", service = "", price = 0, time = null;
+        const hours = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30", "19:00"];
+        const dateInput = document.getElementById('date');
+        dateInput.min = new Date().toISOString().split('T')[0];
 
-        // Bloqueo de fechas pasadas
-        const inputFecha = document.getElementById('c_date');
-        inputFecha.min = new Date().toISOString().split('T')[0];
-
-        function selectExpert(name, el) {
-            selExpert = name;
+        function setExpert(n, el) {
+            expert = n;
             document.querySelectorAll('#especialistas + .grid-container .card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
-            document.getElementById('expertSelectedDisplay').innerText = name;
+            document.getElementById('expertName').innerText = n;
             renderSlots();
         }
 
-        function selectService(name, price, el) {
-            selService = name;
-            selPrice = price;
-            document.querySelectorAll('.grid-container:nth-of-type(3) .card').forEach(c => c.classList.remove('selected'));
+        function setService(n, p, el) {
+            service = n; price = p;
+            document.querySelectorAll('.grid-container:nth-of-type(4) .card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
-            document.getElementById('priceDisplay').innerText = `TOTAL: $${price.toFixed(2)} MXN`;
+            document.getElementById('totalPrice').innerText = `Total: $${p}.00 MXN`;
         }
 
         function renderSlots() {
-            const container = document.getElementById('slotsContainer');
-            const fecha = inputFecha.value;
+            const container = document.getElementById('slots');
+            const d = dateInput.value;
             container.innerHTML = '';
+            if (!expert || !d) { container.innerHTML = '<p style="font-size:0.7rem; color:gray;">Falta elegir experta o fecha...</p>'; return; }
 
-            if (!selExpert || !fecha) {
-                container.innerHTML = '<p style="grid-column: 1/-1; font-size: 0.75rem; color: #999;">Selecciona experta y fecha primero...</p>';
-                return;
-            }
+            const db = JSON.parse(localStorage.getItem('lumiere_res') || '[]');
+            const taken = db.filter(r => r.date === d && r.expert === expert).map(r => r.time);
 
-            // Lógica de Ocupación Dinámica
-            const db = JSON.parse(localStorage.getItem('lumiere_db') || '[]');
-            const ocupados = db
-                .filter(reserva => reserva.fecha === fecha && reserva.expert === selExpert)
-                .map(reserva => reserva.hora);
-
-            workHours.forEach(h => {
-                const isTaken = ocupados.includes(h);
+            hours.forEach(h => {
+                const isTaken = taken.includes(h);
                 const div = document.createElement('div');
                 div.className = `slot ${isTaken ? 'occupied' : ''}`;
                 div.innerText = h;
-
-                if (!isTaken) {
-                    div.onclick = () => {
-                        document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
-                        div.classList.add('selected');
-                        selTime = h;
-                    };
-                }
+                if (!isTaken) div.onclick = () => {
+                    document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+                    div.classList.add('selected');
+                    time = h;
+                };
                 container.appendChild(div);
             });
         }
 
-        inputFecha.addEventListener('change', renderSlots);
+        dateInput.onchange = renderSlots;
 
-        // FINALIZAR RESERVA
-        document.getElementById('lumiereForm').onsubmit = function(e) {
+        document.getElementById('bookingForm').onsubmit = function(e) {
             e.preventDefault();
+            if(!expert || !service || !time) return alert("Completa todos los pasos antes de agendar.");
 
-            if (!selExpert || !selService || !selTime) {
-                alert("Por favor elige: 1. Especialista, 2. Servicio y 3. Horario.");
-                return;
-            }
-
-            const cita = {
-                nombre: document.getElementById('c_name').value,
-                tel: document.getElementById('c_tel').value,
-                expert: selExpert,
-                servicio: selService,
-                fecha: inputFecha.value,
-                hora: selTime,
-                total: selPrice
+            const res = {
+                name: document.getElementById('name').value,
+                tel: document.getElementById('tel').value,
+                expert, service, date: dateInput.value, time, price
             };
 
-            // Guardar en Base de Datos Local
-            const db = JSON.parse(localStorage.getItem('lumiere_db') || '[]');
-            db.push(cita);
-            localStorage.setItem('lumiere_db', JSON.stringify(db));
+            const db = JSON.parse(localStorage.getItem('lumiere_res') || '[]');
+            db.push(res);
+            localStorage.setItem('lumiere_res', JSON.stringify(db));
 
             // Mostrar Ticket
-            document.getElementById('lumiereForm').style.display = 'none';
-            const t = document.getElementById('ticket');
-            t.style.display = 'block';
-            
-            document.getElementById('ticketData').innerHTML = `
-                <strong>CLIENTE:</strong> ${cita.nombre}<br>
-                <strong>ESPECIALISTA:</strong> ${cita.expert}<br>
-                <strong>SERVICIO:</strong> ${cita.servicio}<br>
-                <strong>FECHA:</strong> ${cita.fecha}<br>
-                <strong>HORARIO:</strong> ${cita.hora}<br>
-                <span style="font-size: 1.2rem; color: var(--primary); font-weight: 800;">PAGAR: $${cita.total} MXN</span>
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('ticket').style.display = 'block';
+            document.getElementById('ticketInfo').innerHTML = `
+                <div class="ticket-item"><span>CLIENTA:</span> <span>${res.name}</span></div>
+                <div class="ticket-item"><span>ESPECIALISTA:</span> <span>${res.expert}</span></div>
+                <div class="ticket-item"><span>SERVICIO:</span> <span>${res.service}</span></div>
+                <div class="ticket-item"><span>FECHA:</span> <span>${res.date}</span></div>
+                <div class="ticket-item"><span>HORA:</span> <span>${res.time}</span></div>
             `;
+            document.getElementById('ticketTotal').innerText = `TOTAL: $${res.price}.00 MXN`;
 
-            updateAdminTable();
-            window.scrollTo(0, t.offsetTop - 100);
+            // Configurar WhatsApp
+            const miTelefono = "521234567890"; // <--- PON TU NÚMERO AQUÍ
+            const mensaje = `✨ *NUEVA CITA LUMIÈRE* ✨\n\n👤 *Cliente:* ${res.name}\n💅 *Servicio:* ${res.service}\n👩‍🎨 *Especialista:* ${res.expert}\n📅 *Fecha:* ${res.date}\n⏰ *Hora:* ${res.time}\n💰 *Total:* $${res.price}.00\n\n_Confirmar disponibilidad._`;
+            document.getElementById('wsConfirmBtn').href = `https://wa.me/${miTelefono}?text=${encodeURIComponent(mensaje)}`;
+            
+            updateAdmin();
         };
 
-        // ADMINISTRACIÓN
-        function updateAdminTable() {
-            const db = JSON.parse(localStorage.getItem('lumiere_db') || '[]');
-            const body = document.getElementById('adminBody');
+        function updateAdmin() {
+            const db = JSON.parse(localStorage.getItem('lumiere_res') || '[]');
+            const body = document.getElementById('adminList');
             body.innerHTML = '';
-            db.forEach(c => {
-                body.innerHTML += `<tr>
-                    <td>${c.nombre}</td>
-                    <td>${c.expert}</td>
-                    <td>${c.servicio}</td>
-                    <td>${c.fecha} | ${c.hora}</td>
-                </tr>`;
+            db.forEach(r => {
+                body.innerHTML += `<tr><td>${r.name}</td><td>${r.expert}</td><td>${r.service}</td><td>${r.date} ${r.time}</td></tr>`;
             });
         }
-
-        function clearDatabase() {
-            if(confirm("¿Borrar historial?")) {
-                localStorage.removeItem('lumiere_db');
-                updateAdminTable();
-                renderSlots();
-            }
-        }
-
-        // Carga inicial
-        updateAdminTable();
+        updateAdmin();
     </script>
 </body>
 </html>
