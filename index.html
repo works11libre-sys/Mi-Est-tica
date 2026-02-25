@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumière Estética | Reserva Tu Brillo</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -13,230 +14,98 @@
             --primary: #d4a373; /* Oro Rosado */
             --accent: #faedcd;
             --dark: #1a1a1a;
-            --glass: rgba(255, 255, 255, 0.7);
-            --shadow: 0 20px 40px rgba(0,0,0,0.1);
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow: 0 20px 40px rgba(0,0,0,0.08);
             --radius: 30px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        body { background-color: #fefae0; color: var(--dark); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        body {
-            background-color: #fefae0;
-            color: var/(--dark);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* --- NAVBAR PÍLDORA --- */
-        .nav-container {
-            position: fixed;
-            top: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 1000;
-        }
-
+        /* --- NAVBAR --- */
+        .nav-container { position: fixed; top: 20px; width: 100%; display: flex; justify-content: center; z-index: 1000; }
         nav {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 12px 30px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: var(--shadow);
+            background: var(--glass); backdrop-filter: blur(15px); padding: 10px 25px;
+            border-radius: 50px; display: flex; align-items: center; gap: 20px;
+            border: 1px solid rgba(255,255,255,0.3); box-shadow: var(--shadow);
         }
+        .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--primary); letter-spacing: 2px; }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 20px;
+            height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center; color: white; padding: 20px;
         }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 20px; }
 
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin-bottom: 20px;
+        /* --- CARDS & GRID --- */
+        .section-title { text-align: center; padding: 80px 20px 30px; font-size: 2.2rem; color: var(--primary); }
+        .grid-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+        .card {
+            background: var(--white); border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent; cursor: pointer; text-align: center; padding-bottom: 20px;
         }
+        .card:hover { transform: translateY(-10px); }
+        .card.selected { border-color: var(--primary); background: var(--accent); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card h3 { margin: 15px 0 5px; font-size: 1.3rem; }
+        .price { color: var(--primary); font-weight: 700; font-size: 1.2rem; margin-top: 5px; }
 
+        /* --- FORMULARIO DE RESERVA --- */
+        .booking-section { background: var(--white); padding: 80px 20px; border-radius: 60px 60px 0 0; margin-top: 50px; }
+        .form-container { max-width: 700px; margin: 0 auto; }
+        
+        .input-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+        input, select { 
+            width: 100%; padding: 16px; border-radius: 15px; border: 1px solid #eee; 
+            background: #fdfdfd; font-size: 1rem; transition: 0.3s;
+        }
+        input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.1); }
+
+        /* --- HORARIOS (SLOTS) --- */
+        .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 12px; margin-top: 15px; }
+        .slot {
+            padding: 14px; background: #f5f5f5; border-radius: 12px; text-align: center;
+            cursor: pointer; transition: 0.3s; font-weight: 600; font-size: 0.9rem;
+        }
+        .slot:hover:not(.occupied) { background: var(--accent); color: var(--primary); }
+        .slot.selected { background: var(--primary); color: white; transform: scale(1.05); }
+        .slot.occupied { opacity: 0.2; cursor: not-allowed; text-decoration: line-through; background: #ddd; }
+
+        /* --- BOTONES --- */
         .cta-btn {
-            background: var(--primary);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.4);
+            background: var(--primary); color: white; padding: 18px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; transition: 0.3s; border: none; cursor: pointer;
+            display: inline-block; width: 100%; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
         }
+        .cta-btn:hover { background: var(--dark); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
+        /* --- TICKET --- */
+        #ticket {
+            display: none; background: #fff; padding: 40px; border-radius: 25px;
+            max-width: 450px; margin: 30px auto; border: 2px dashed var(--primary);
+            text-align: center; animation: fadeInUp 0.6s ease;
         }
+        .ticket-header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 20px; }
 
-        .cta-btn:hover::before { left: 150%; }
+        /* --- ADMIN SECTION --- */
+        .admin-section { padding: 40px 20px; background: #eee; text-align: center; }
+        .admin-table { width: 100%; max-width: 1000px; margin: 20px auto; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; font-size: 0.8rem; }
+        .admin-table th, .admin-table td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        .admin-table th { background: var(--primary); color: white; }
 
-        /* --- CATALOGO (SLIDER) --- */
-        .section-title {
-            text-align: center;
-            padding: 80px 20px 40px;
-            font-size: 2.5rem;
-        }
+        footer { background: var(--dark); color: white; padding: 60px 20px; text-align: center; }
 
-        .slider-container {
-            padding: 20px;
-            overflow-x: auto;
-            display: flex;
-            gap: 20px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Firefox */
-        }
-
-        .slider-container::-webkit-scrollbar { display: none; }
-
-        .service-card {
-            min-width: 300px;
-            background: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            scroll-snap-align: center;
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .service-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 25px;
-        }
-
-        .price {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1.4rem;
-            margin: 10px 0;
-        }
-
-        .order-btn {
-            width: 100%;
-            border: none;
-            background: var(--dark);
-            color: white;
-            padding: 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        /* --- STEPPER --- */
-        .stepper {
-            display: flex;
-            justify-content: space-around;
-            padding: 60px 20px;
-            flex-wrap: wrap;
-            gap: 30px;
-            background: var(--accent);
-        }
-
-        .step {
-            text-align: center;
-            max-width: 200px;
-        }
-
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: var(--shadow);
-            color: var(--primary);
-        }
-
-        /* --- WHATSAPP FLOATING --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -245,128 +114,263 @@
     <div class="nav-container">
         <nav>
             <div class="logo">LUMIÈRE</div>
-            <a href="#catalogo" style="text-decoration:none; color:var(--dark); font-size: 0.9rem; font-weight:600;">Servicios</a>
-            <a href="https://wa.me/521234567890" class="cta-btn" style="padding: 8px 20px; font-size: 0.8rem;">RESERVAR YA</a>
+            <a href="#especialistas" style="text-decoration:none; color:var(--dark); font-size: 0.75rem; font-weight:600; text-transform:uppercase;">Especialistas</a>
+            <a href="#reservar" style="text-decoration:none; color:var(--primary); font-size: 0.75rem; font-weight:800; text-transform:uppercase;">Reservar</a>
         </nav>
     </div>
 
     <section class="hero">
         <div class="hero-content" data-aos="fade-up">
-            <p style="letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px;">Wellness & Beauty</p>
-            <h1>Resalta tu belleza natural</h1>
-            <p style="margin-bottom: 30px; font-size: 1.1rem;">Servicios premium de uñas, pestañas y estilismo profesional.</p>
-            <a href="#catalogo" class="cta-btn">VER SERVICIOS</a>
+            <h1 style="font-style: italic;">Resalta tu Brillo</h1>
+            <p style="letter-spacing: 3px; font-weight: 300;">ESTÉTICA INTEGRAL & BIENESTAR PREMIUM</p>
         </div>
     </section>
 
-    <h2 class="section-title">Nuestros Servicios</h2>
-    <div class="slider-container" id="catalogo">
-        <div class="service-card" data-aos="fade-left">
-            <img src="https://images.unsplash.com/photo-1632345033839-247e99714b48?auto=format&fit=crop&q=80&w=500" alt="Diseño de Uñas">
-            <div class="card-body">
-                <h3>Uñas Sculpt & Art</h3>
-                <p>Manicura rusa y diseño personalizado a mano alzada.</p>
+    <h2 class="section-title" id="especialistas">Nuestras Especialistas</h2>
+    <div class="grid-container">
+        <div class="card" onclick="selectExpert('Elena (Nails)', this)" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400" alt="Elena">
+            <h3>Elena</h3>
+            <p style="font-style: italic;">Master en Manicura Rusa</p>
+        </div>
+        <div class="card" onclick="selectExpert('Sofía (Lashes)', this)" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&q=80&w=400" alt="Sofía">
+            <h3>Sofía</h3>
+            <p style="font-style: italic;">Lash Artist & Diseño de Cejas</p>
+        </div>
+        <div class="card" onclick="selectExpert('Clara (Hair)', this)" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=400" alt="Clara">
+            <h3>Clara</h3>
+            <p style="font-style: italic;">Colorimetría & Estilismo</p>
+        </div>
+    </div>
+
+    <h2 class="section-title">Servicios Destacados</h2>
+    <div class="grid-container">
+        <div class="card" onclick="selectService('Uñas Sculpt & Gel', 450, this)">
+            <div style="padding: 25px;">
+                <h3>Uñas Sculpt</h3>
                 <p class="price">$450 MXN</p>
-                <button class="order-btn" onclick="sendOrder('Uñas Sculpt', '450', 'Manicura rusa')">
-                    <i data-lucide="calendar"></i> Reservar
-                </button>
+                <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">Duración: 90 min</p>
             </div>
         </div>
-
-        <div class="service-card" data-aos="fade-left" data-aos-delay="100">
-            <img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&q=80&w=500" alt="Pestañas">
-            <div class="card-body">
+        <div class="card" onclick="selectService('Lifting + Tinte', 600, this)">
+            <div style="padding: 25px;">
                 <h3>Lifting de Pestañas</h3>
-                <p>Efecto de longitud natural con nutrición de keratina.</p>
-                <p class="price">$650 MXN</p>
-                <button class="order-btn" onclick="sendOrder('Lifting de Pestañas', '650', 'Efecto natural')">
-                    <i data-lucide="calendar"></i> Reservar
-                </button>
+                <p class="price">$600 MXN</p>
+                <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">Duración: 60 min</p>
             </div>
         </div>
-
-        <div class="service-card" data-aos="fade-left" data-aos-delay="200">
-            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=500" alt="Cortes">
-            <div class="card-body">
-                <h3>Corte & Estilo</h3>
-                <p>Tendencias internacionales adaptadas a tu rostro.</p>
-                <p class="price">$380 MXN</p>
-                <button class="order-btn" onclick="sendOrder('Corte & Estilo', '380', 'Tendencia')">
-                    <i data-lucide="calendar"></i> Reservar
-                </button>
-            </div>
-        </div>
-
-        <div class="service-card" data-aos="fade-left" data-aos-delay="300">
-            <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&q=80&w=500" alt="Tintes">
-            <div class="card-body">
+        <div class="card" onclick="selectService('Balayage / Color', 1350, this)">
+            <div style="padding: 25px;">
                 <h3>Balayage Premium</h3>
-                <p>Degradado perfecto sin dañar la fibra capilar.</p>
-                <p class="price">$1,200 MXN</p>
-                <button class="order-btn" onclick="sendOrder('Balayage Premium', '1200', 'Degradado')">
-                    <i data-lucide="calendar"></i> Reservar
-                </button>
+                <p class="price">$1,350 MXN</p>
+                <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">Duración: 180 min</p>
             </div>
         </div>
     </div>
 
-    <section class="stepper" data-aos="fade-up">
-        <div class="step">
-            <div class="step-icon"><i data-lucide="mouse-pointer-2"></i></div>
-            <h4>1. Eliges</h4>
-            <p>Selecciona el servicio que deseas.</p>
-        </div>
-        <div class="step">
-            <div class="step-icon"><i data-lucide="message-square"></i></div>
-            <h4>2. Confirmas</h4>
-            <p>Acordamos fecha y hora por WhatsApp.</p>
-        </div>
-        <div class="step">
-            <div class="step-icon"><i data-lucide="sparkles"></i></div>
-            <h4>3. Brillas</h4>
-            <p>Te esperamos para consentirte.</p>
+    <section class="booking-section" id="reservar">
+        <div class="form-container">
+            <h2 style="text-align: center; margin-bottom: 40px; font-family: 'Playfair Display';">Agenda tu Cita</h2>
+            
+            <form id="lumiereForm">
+                <div class="grid-container" style="grid-template-columns: 1fr 1fr; padding: 0; gap: 15px; margin-bottom: 0;">
+                    <div class="input-group">
+                        <label>Tu Nombre</label>
+                        <input type="text" id="c_name" required placeholder="Nombre">
+                    </div>
+                    <div class="input-group">
+                        <label>WhatsApp</label>
+                        <input type="tel" id="c_tel" required placeholder="Número">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Fecha deseada</label>
+                    <input type="date" id="c_date" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Horarios disponibles para <span id="expertSelectedDisplay" style="color: var(--primary); font-weight: 800;">...</span></label>
+                    <div id="slotsContainer" class="slots-grid">
+                        </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <p id="priceDisplay" style="font-size: 1.4rem; font-weight: 700; margin-bottom: 25px;">TOTAL: $0.00</p>
+                    <button type="submit" class="cta-btn">Finalizar Reserva</button>
+                </div>
+            </form>
+
+            <div id="ticket">
+                <div class="ticket-header">
+                    <h2 style="color: var(--primary); letter-spacing: 3px;">LUMIÈRE</h2>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">ESTÉTICA & SPA</p>
+                </div>
+                <div id="ticketData" style="text-align: left; line-height: 2.2; font-size: 0.9rem; color: #444;">
+                </div>
+                <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                <p style="font-size: 0.7rem; color: #999;">¡Presenta una captura al llegar!</p>
+                <button onclick="window.location.reload()" class="cta-btn" style="margin-top:20px; background: #333; padding: 10px;">Nueva Cita</button>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h3>LUMIÈRE</h3>
-                <p>Tu refugio de belleza.</p>
-            </div>
-            <div>
-                <h4>Horarios</h4>
-                <p>Lun - Sáb: 10:00 AM - 8:00 PM</p>
-                <p>Dom: Cerrado</p>
-            </div>
-            <div>
-                <h4>Síguenos</h4>
-                <div style="display:flex; justify-content:center; gap:15px; margin-top:10px;">
-                    <i data-lucide="instagram"></i>
-                    <i data-lucide="facebook"></i>
-                </div>
-            </div>
-        </div>
-        <p style="margin-top:40px; opacity:0.6; font-size:0.8rem;">&copy; 2026 Lumière Estética. Todos los derechos reservados.</p>
-    </footer>
+    <section class="admin-section">
+        <h3>Panel de Control (Citas Registradas)</h3>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Especialista</th>
+                    <th>Servicio</th>
+                    <th>Fecha / Hora</th>
+                </tr>
+            </thead>
+            <tbody id="adminBody">
+                </tbody>
+        </table>
+        <button onclick="clearDatabase()" style="color: red; background: none; border: none; cursor: pointer; font-size: 0.7rem; margin-top: 10px;">[Borrar todas las citas]</button>
+    </section>
 
-    <a href="https://wa.me/521234567890" class="whatsapp-float">
-        <i data-lucide="message-circle" size="32"></i>
-    </a>
+    <footer>
+        <p>LUMIÈRE ESTÉTICA PREMIUM &copy; 2026</p>
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inicializar Iconos y Animaciones
-        lucide.createIcons();
         AOS.init({ duration: 1000, once: true });
+        lucide.createIcons();
 
-        // Función de Envío a WhatsApp
-        function sendOrder(name, price, desc) {
-            const phoneNumber = "521234567890"; // Reemplazar con número real
-            const message = `¡Hola! Me interesa este [SERVICIO]: ${name} - Precio: $${price} MXN. (${desc}). ¿Tienen disponibilidad para una cita?`;
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+        let selExpert = "";
+        let selService = "";
+        let selPrice = 0;
+        let selTime = null;
+        const workHours = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30", "19:00"];
+
+        // Bloqueo de fechas pasadas
+        const inputFecha = document.getElementById('c_date');
+        inputFecha.min = new Date().toISOString().split('T')[0];
+
+        function selectExpert(name, el) {
+            selExpert = name;
+            document.querySelectorAll('#especialistas + .grid-container .card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('expertSelectedDisplay').innerText = name;
+            renderSlots();
         }
+
+        function selectService(name, price, el) {
+            selService = name;
+            selPrice = price;
+            document.querySelectorAll('.grid-container:nth-of-type(3) .card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            document.getElementById('priceDisplay').innerText = `TOTAL: $${price.toFixed(2)} MXN`;
+        }
+
+        function renderSlots() {
+            const container = document.getElementById('slotsContainer');
+            const fecha = inputFecha.value;
+            container.innerHTML = '';
+
+            if (!selExpert || !fecha) {
+                container.innerHTML = '<p style="grid-column: 1/-1; font-size: 0.75rem; color: #999;">Selecciona experta y fecha primero...</p>';
+                return;
+            }
+
+            // Lógica de Ocupación Dinámica
+            const db = JSON.parse(localStorage.getItem('lumiere_db') || '[]');
+            const ocupados = db
+                .filter(reserva => reserva.fecha === fecha && reserva.expert === selExpert)
+                .map(reserva => reserva.hora);
+
+            workHours.forEach(h => {
+                const isTaken = ocupados.includes(h);
+                const div = document.createElement('div');
+                div.className = `slot ${isTaken ? 'occupied' : ''}`;
+                div.innerText = h;
+
+                if (!isTaken) {
+                    div.onclick = () => {
+                        document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+                        div.classList.add('selected');
+                        selTime = h;
+                    };
+                }
+                container.appendChild(div);
+            });
+        }
+
+        inputFecha.addEventListener('change', renderSlots);
+
+        // FINALIZAR RESERVA
+        document.getElementById('lumiereForm').onsubmit = function(e) {
+            e.preventDefault();
+
+            if (!selExpert || !selService || !selTime) {
+                alert("Por favor elige: 1. Especialista, 2. Servicio y 3. Horario.");
+                return;
+            }
+
+            const cita = {
+                nombre: document.getElementById('c_name').value,
+                tel: document.getElementById('c_tel').value,
+                expert: selExpert,
+                servicio: selService,
+                fecha: inputFecha.value,
+                hora: selTime,
+                total: selPrice
+            };
+
+            // Guardar en Base de Datos Local
+            const db = JSON.parse(localStorage.getItem('lumiere_db') || '[]');
+            db.push(cita);
+            localStorage.setItem('lumiere_db', JSON.stringify(db));
+
+            // Mostrar Ticket
+            document.getElementById('lumiereForm').style.display = 'none';
+            const t = document.getElementById('ticket');
+            t.style.display = 'block';
+            
+            document.getElementById('ticketData').innerHTML = `
+                <strong>CLIENTE:</strong> ${cita.nombre}<br>
+                <strong>ESPECIALISTA:</strong> ${cita.expert}<br>
+                <strong>SERVICIO:</strong> ${cita.servicio}<br>
+                <strong>FECHA:</strong> ${cita.fecha}<br>
+                <strong>HORARIO:</strong> ${cita.hora}<br>
+                <span style="font-size: 1.2rem; color: var(--primary); font-weight: 800;">PAGAR: $${cita.total} MXN</span>
+            `;
+
+            updateAdminTable();
+            window.scrollTo(0, t.offsetTop - 100);
+        };
+
+        // ADMINISTRACIÓN
+        function updateAdminTable() {
+            const db = JSON.parse(localStorage.getItem('lumiere_db') || '[]');
+            const body = document.getElementById('adminBody');
+            body.innerHTML = '';
+            db.forEach(c => {
+                body.innerHTML += `<tr>
+                    <td>${c.nombre}</td>
+                    <td>${c.expert}</td>
+                    <td>${c.servicio}</td>
+                    <td>${c.fecha} | ${c.hora}</td>
+                </tr>`;
+            });
+        }
+
+        function clearDatabase() {
+            if(confirm("¿Borrar historial?")) {
+                localStorage.removeItem('lumiere_db');
+                updateAdminTable();
+                renderSlots();
+            }
+        }
+
+        // Carga inicial
+        updateAdminTable();
     </script>
 </body>
 </html>
