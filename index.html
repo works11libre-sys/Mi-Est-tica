@@ -5,101 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumière Estética | Reserva Premium</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #d4a373; /* Oro Rosado */
-            --accent: #faedcd;
-            --dark: #1a1a1a;
+            --primary: #f7cad0; /* Rosa Pastel Principal */
+            --primary-dark: #f9bec7; /* Rosa más acentuado */
+            --accent: #e0b1cb; /* Lila sutil complementario */
+            --bg-soft: #fcfaf9; /* Blanco cálido no tan blanco */
+            --dark: #2b2d42; /* Gris oscuro elegante */
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.95);
-            --shadow: 0 20px 40px rgba(0,0,0,0.08);
-            --radius: 30px;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow-sm: 0 4px 12px rgba(247, 202, 208, 0.2);
+            --shadow-md: 0 12px 30px rgba(43, 45, 66, 0.06);
+            --shadow-glow: 0 0 20px rgba(247, 202, 208, 0.6);
+            --radius: 20px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
-        body { background-color: #fefae0; color: var(--dark); overflow-x: hidden; }
+        body { background-color: var(--bg-soft); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
         /* --- NAV --- */
-        .nav-container { position: fixed; top: 20px; width: 100%; display: flex; justify-content: center; z-index: 1000; }
+        .nav-container { position: fixed; top: 15px; width: 100%; display: flex; justify-content: center; z-index: 1000; padding: 0 15px; }
         nav {
-            background: var(--glass); backdrop-filter: blur(15px); padding: 12px 30px;
-            border-radius: 50px; display: flex; align-items: center; gap: 20px;
-            border: 1px solid rgba(255,255,255,0.3); box-shadow: var(--shadow);
+            background: var(--glass); backdrop-filter: blur(15px); padding: 12px 25px;
+            border-radius: 50px; display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 600px;
+            border: 1px solid rgba(255,255,255,0.5); box-shadow: var(--shadow-md);
         }
-        .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; color: var(--primary); letter-spacing: 2px; }
+        .logo { font-weight: 700; font-size: 1.1rem; color: var(--dark); letter-spacing: 2px; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary-dark); }
 
         /* --- HERO --- */
         .hero {
-            height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover; background-position: center; color: white;
+            height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(255, 245, 245, 0.5), rgba(252, 250, 249, 1)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center; padding: 0 20px;
         }
+        .hero h1 { font-size: 2.5rem; color: var(--dark); margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+        .hero p { letter-spacing: 4px; font-size: 0.8rem; color: var(--dark); font-weight: 500; }
 
-        /* --- GALERÍA (NUEVA SECCIÓN) --- */
-        .gallery-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-item { position: relative; height: 300px; border-radius: 20px; overflow: hidden; cursor: pointer; box-shadow: var(--shadow); }
+        /* --- SECCIONES REUTILIZABLES --- */
+        .section-title { text-align: center; padding: 50px 20px 15px; font-size: 2rem; color: var(--dark); position: relative; }
+        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background: var(--primary); margin: 8px auto 0; border-radius: 2px; }
+        .grid-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+
+        /* --- GALERÍA --- */
+        .gallery-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
+        .gallery-item { position: relative; height: 260px; border-radius: var(--radius); overflow: hidden; cursor: pointer; box-shadow: var(--shadow-md); transition: 0.4s; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-overlay { position: absolute; inset: 0; background: rgba(212, 163, 115, 0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; color: white; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .gallery-item:hover { box-shadow: var(--shadow-glow); }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; inset: 0; background: rgba(247, 202, 208, 0.85); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; color: var(--dark); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
-        /* --- GRID & CARDS --- */
-        .section-title { text-align: center; padding: 60px 20px 20px; font-size: 2.2rem; color: var(--primary); }
-        .grid-container { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-
+        /* --- TARJETAS (CARDS) --- */
         .card {
             background: var(--white); border-radius: var(--radius); overflow: hidden;
-            box-shadow: var(--shadow); transition: 0.4s; border: 2px solid transparent; cursor: pointer; text-align: center;
+            box-shadow: var(--shadow-md); transition: 0.4s; border: 2px solid transparent; cursor: pointer; text-align: center;
+            display: flex; flex-direction: column;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .card.selected { border-color: var(--primary); background: var(--accent); }
-        .card img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow-glow); }
+        .card.selected { border-color: var(--primary-dark); background: linear-gradient(#ffffff, #fff5f6); box-shadow: var(--shadow-glow); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .card-body h3 { font-size: 1.3rem; margin-bottom: 5px; color: var(--dark); }
+        .card-body p { font-size: 0.85rem; color: #777; }
 
-        /* --- FORM --- */
-        .booking-section { background: var(--white); padding: 80px 20px; border-radius: 60px 60px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); }
-        .form-container { max-width: 650px; margin: 0 auto; }
-        input, select { width: 100%; padding: 15px; border-radius: 15px; border: 1px solid #eee; background: #fdfdfd; margin-bottom: 20px; font-size: 1rem; }
-        label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 5px; }
+        /* --- FORMULARIO DE RESERVA --- */
+        .booking-section { background: var(--white); padding: 60px 20px; border-radius: 40px 40px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.02); margin-top: 40px; }
+        .form-container { max-width: 600px; margin: 0 auto; }
+        
+        label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--dark); display: block; margin-bottom: 8px; letter-spacing: 1px; }
+        input, select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; background: #fafafa; margin-bottom: 25px; font-size: 1rem; transition: 0.3s; color: var(--dark); }
+        input:focus, select:focus { outline: none; border-color: var(--primary-dark); background: var(--white); box-shadow: 0 0 10px rgba(247, 202, 208, 0.4); }
 
         /* --- HORARIOS --- */
-        .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(85px, 1fr)); gap: 10px; margin-top: 10px; }
+        .slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 12px; margin-bottom: 25px; }
         .slot {
-            padding: 12px; background: #f5f5f5; border-radius: 12px; text-align: center;
-            cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: 0.3s;
+            padding: 12px 5px; background: #f8f9fa; border-radius: 10px; text-align: center;
+            cursor: pointer; font-weight: 500; font-size: 0.85rem; transition: 0.3s; border: 1px solid #edf2f7;
         }
-        .slot:hover:not(.occupied) { background: var(--accent); }
-        .slot.selected { background: var(--primary); color: white; }
-        .slot.occupied { opacity: 0.2; cursor: not-allowed; text-decoration: line-through; }
+        .slot:hover:not(.occupied) { background: var(--primary); color: var(--dark); }
+        .slot.selected { background: var(--primary-dark); color: var(--dark); font-weight: 600; box-shadow: var(--shadow-sm); border-color: var(--primary-dark); }
+        .slot.occupied { opacity: 0.25; cursor: not-allowed; text-decoration: line-through; background: #e4e4e4; }
 
-        /* --- BUTTONS --- */
+        /* --- BOTONES --- */
         .cta-btn {
-            background: var(--primary); color: white; padding: 18px; border-radius: 50px;
+            background: var(--primary); color: var(--dark); padding: 16px; border-radius: 50px;
             border: none; cursor: pointer; width: 100%; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            box-shadow: var(--shadow-sm); font-size: 0.9rem;
         }
-        .cta-btn:hover { background: var(--dark); }
-        .ws-btn { background: #25d366 !important; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: white; }
+        .cta-btn:hover { background: var(--dark); color: var(--white); transform: translateY(-2px); }
+        .ws-btn { background: #25d366 !important; color: white !important; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
+        .ws-btn:hover { background: #1ebd58 !important; transform: translateY(-2px); }
 
         /* --- TICKET --- */
         #ticket {
-            display: none; background: #fff; padding: 40px; border-radius: 25px;
-            max-width: 450px; margin: 30px auto; border: 2px dashed var(--primary);
-            text-align: center; animation: fadeInUp 0.5s ease;
+            display: none; background: #fffdfd; padding: 30px; border-radius: 25px;
+            max-width: 100%; margin: 30px auto 0; border: 2px dashed var(--primary-dark);
+            text-align: center; animation: fadeInUp 0.5s ease; box-shadow: var(--shadow-md);
         }
-        .ticket-item { display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid #f9f9f9; padding-bottom: 5px; }
+        .ticket-header h2 { font-size: 1.8rem; color: var(--dark); letter-spacing: 3px; }
+        .ticket-body { margin: 20px 0; text-align: left; background: #fdfafb; padding: 15px; border-radius: 15px; }
+        .ticket-item { display: flex; justify-content: space-between; margin-bottom: 12px; border-bottom: 1px solid #f5ecee; padding-bottom: 6px; font-size: 0.9rem; }
+        .ticket-item span:first-child { font-weight: 600; color: #666; font-size: 0.8rem; }
 
         /* --- ADMIN --- */
-        .admin-area { padding: 40px 20px; background: #f4f4f4; }
-        .admin-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; background: white; border-radius: 15px; overflow: hidden; font-size: 0.8rem; }
-        .admin-table th { background: var(--primary); color: white; padding: 15px; }
-        .admin-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        .admin-area { padding: 40px 15px; background: #f5ecee; }
+        .table-responsive { width: 100%; max-width: 900px; margin: 0 auto; overflow-x: auto; border-radius: 15px; box-shadow: var(--shadow-md); }
+        .admin-table { width: 100%; border-collapse: collapse; background: white; font-size: 0.85rem; text-align: left; }
+        .admin-table th { background: var(--dark); color: white; padding: 15px; font-weight: 500; }
+        .admin-table td { padding: 15px; border-bottom: 1px solid #eee; color: var(--dark); }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- RESPONSIVE AJUSTADO PARA TELÉFONOS (NO APRETADO) --- */
+        @media (max-width: 768px) {
+            nav { max-width: 90%; }
+            .hero h1 { font-size: 2rem; }
+            .grid-container { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; padding: 10px; }
+            .gallery-container { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
+            .gallery-item { height: 180px; }
+            .section-title { font-size: 1.6rem; padding: 40px 15px 10px; }
+            .booking-section { padding: 40px 15px; border-radius: 30px 30px 0 0; }
+            input, select { padding: 12px; margin-bottom: 18px; }
+            .slots-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        }
     </style>
 </head>
 <body>
@@ -107,15 +143,18 @@
     <div class="nav-container">
         <nav>
             <div class="logo">LUMIÈRE</div>
-            <a href="#especialistas" style="text-decoration:none; color:var(--dark); font-weight:700; font-size:0.8rem;">ESPECIALISTAS</a>
-            <a href="#reservar" style="text-decoration:none; color:var(--primary); font-weight:700; font-size:0.8rem;">RESERVAR CITA</a>
+            <div class="nav-links">
+                <a href="#especialistas">ESTILISTAS</a>
+                <a href="#servicios">SERVICIOS</a>
+                <a href="#reservar">RESERVAR</a>
+            </div>
         </nav>
     </div>
 
     <section class="hero">
         <div data-aos="zoom-in">
             <h1 style="font-style: italic;">Tu Belleza, Nuestra Pasión</h1>
-            <p style="letter-spacing: 4px; font-size: 0.8rem;">BIENVENIDA AL LUJO</p>
+            <p>BIENVENIDA AL LUJO</p>
         </div>
     </section>
 
@@ -125,15 +164,15 @@
             <img src="https://images.unsplash.com/photo-1604654894610-df490651e10c?auto=format&fit=crop&q=80&w=500" alt="Uñas">
             <div class="gallery-overlay">Manicura Perfecta</div>
         </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="50">
             <img src="https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&q=80&w=500" alt="Pestañas">
             <div class="gallery-overlay">Mirada Lumière</div>
         </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
             <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=500" alt="Cabello">
             <div class="gallery-overlay">Color & Estilo</div>
         </div>
-        <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+        <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
             <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?auto=format&fit=crop&q=80&w=500" alt="Spa">
             <div class="gallery-overlay">Cuidado Facial</div>
         </div>
@@ -141,97 +180,116 @@
 
     <h2 class="section-title" id="especialistas">Selecciona a tu Especialista</h2>
     <div class="grid-container">
-        <div class="card" onclick="setExpert('Elena (Uñas)', this)">
+        <div class="card" onclick="setExpert('Elena', '5215512345678', this)" data-aos="fade-up">
             <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400">
-            <div class="card-body"><h3>Elena</h3><p>Nails Specialist</p></div>
+            <div class="card-body"><h3>Elena</h3><p>Nails & Manicure Specialist</p></div>
         </div>
-        <div class="card" onclick="setExpert('Sofía (Pestañas)', this)">
+        <div class="card" onclick="setExpert('Sofía', '5215587654321', this)" data-aos="fade-up" data-aos-delay="50">
             <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&q=80&w=400">
-            <div class="card-body"><h3>Sofía</h3><p>Lash Artist</p></div>
+            <div class="card-body"><h3>Sofía</h3><p>Lash & Lash Lifting Artist</p></div>
         </div>
-        <div class="card" onclick="setExpert('Clara (Cabello)', this)">
+        <div class="card" onclick="setExpert('Clara', '5215599887766', this)" data-aos="fade-up" data-aos-delay="100">
             <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=400">
-            <div class="card-body"><h3>Clara</h3><p>Hair Stylist</p></div>
+            <div class="card-body"><h3>Clara</h3><p>Hair Stylist & Balayage Expert</p></div>
+        </div>
+        <div class="card" onclick="setExpert('Camila', '5215544332211', this)" data-aos="fade-up" data-aos-delay="150">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400">
+            <div class="card-body"><h3>Camila</h3><p>Microblading & Facial Care</p></div>
         </div>
     </div>
 
-    <h2 class="section-title">Elige el Servicio</h2>
+    <h2 class="section-title" id="servicios">Elige el Servicio Premium</h2>
     <div class="grid-container">
         <div class="card" onclick="setService('Uñas Sculpt', 450, this)">
-            <div class="card-body"><h3>Uñas Sculpt</h3><p style="color:var(--primary); font-weight:700;">$450 MXN</p></div>
+            <div class="card-body"><h3>Uñas Sculpt</h3><p style="color:var(--dark); font-weight:600; margin-top:5px;">$450 MXN</p></div>
         </div>
         <div class="card" onclick="setService('Lifting Pestañas', 600, this)">
-            <div class="card-body"><h3>Lifting Pestañas</h3><p style="color:var(--primary); font-weight:700;">$600 MXN</p></div>
+            <div class="card-body"><h3>Lifting Pestañas</h3><p style="color:var(--dark); font-weight:600; margin-top:5px;">$600 MXN</p></div>
         </div>
         <div class="card" onclick="setService('Balayage Premium', 1400, this)">
-            <div class="card-body"><h3>Balayage Premium</h3><p style="color:var(--primary); font-weight:700;">$1400 MXN</p></div>
+            <div class="card-body"><h3>Balayage Premium</h3><p style="color:var(--dark); font-weight:600; margin-top:5px;">$1400 MXN</p></div>
+        </div>
+        <div class="card" onclick="setService('Extensiones de Cabello', 2100, this)">
+            <div class="card-body"><h3>Extensiones de Cabello</h3><p style="color:var(--dark); font-weight:600; margin-top:5px;">$2100 MXN</p></div>
+        </div>
+        <div class="card" onclick="setService('Facial Hidratación Profunda', 750, this)">
+            <div class="card-body"><h3>Facial Profundo</h3><p style="color:var(--dark); font-weight:600; margin-top:5px;">$750 MXN</p></div>
+        </div>
+        <div class="card" onclick="setService('Microblading Cejas', 1800, this)">
+            <div class="card-body"><h3>Microblading Cejas</h3><p style="color:var(--dark); font-weight:600; margin-top:5px;">$1800 MXN</p></div>
         </div>
     </div>
 
     <section class="booking-section" id="reservar">
         <div class="form-container">
-            <form id="bookingForm">
+            <form id="bookingForm" data-aos="fade-up">
                 <label>Nombre de la clienta</label>
                 <input type="text" id="name" required placeholder="Ej: María Pérez">
                 
-                <label>Teléfono (WhatsApp)</label>
-                <input type="tel" id="tel" required placeholder="52...">
+                <label>Teléfono de Contacto</label>
+                <input type="tel" id="tel" required placeholder="Ej: 5512345678">
 
                 <label>Fecha de la cita</label>
                 <input type="date" id="date" required>
 
-                <label>Horarios para <span id="expertName" style="color:var(--primary);">...</span></label>
+                <label>Horarios para <span id="expertName" style="color:var(--dark); font-weight:600;">...</span></label>
                 <div id="slots" class="slots-grid"></div>
 
-                <div style="margin-top:30px; text-align:center;">
-                    <h3 id="totalPrice" style="margin-bottom:20px;">Total: $0.00</h3>
-                    <button type="submit" class="cta-btn">Agendar mi Cita</button>
+                <div style="margin-top:20px; text-align:center;">
+                    <h3 id="totalPrice" style="margin-bottom:20px; font-size:1.5rem;">Total: $0.00</h3>
+                    <button type="submit" class="cta-btn">Generar Ticket de Cita</button>
                 </div>
             </form>
 
             <div id="ticket">
-                <div style="border-bottom: 2px solid var(--accent); margin-bottom:20px; padding-bottom:10px;">
-                    <h2 style="color:var(--primary); letter-spacing:4px;">LUMIÈRE</h2>
-                    <p style="font-size:0.7rem;">CONFIRMACIÓN DE RESERVA</p>
+                <div class="ticket-header" style="border-bottom: 2px dashed var(--primary); padding-bottom:15px; margin-bottom:15px;">
+                    <h2>LUMIÈRE</h2>
+                    <p style="font-size:0.75rem; letter-spacing:2px; font-weight:500; color:#555;">TICKET DE CONFIRMACIÓN</p>
                 </div>
-                <div id="ticketInfo" style="text-align:left;"></div>
-                <p style="font-weight:700; font-size:1.2rem; margin-top:20px; color:var(--primary);" id="ticketTotal"></p>
+                <div id="ticketInfo" class="ticket-body"></div>
+                <p style="font-weight:700; font-size:1.3rem; margin-top:15px; color:var(--dark);" id="ticketTotal"></p>
                 
                 <a href="#" id="wsConfirmBtn" class="cta-btn ws-btn" target="_blank">
-                    <i data-lucide="message-circle"></i> CONFIRMAR POR WHATSAPP
+                    <i data-lucide="message-circle"></i> ENVIAR TICKET A ESTILISTA
                 </a>
-                <button onclick="window.location.reload()" style="margin-top:15px; background:none; border:none; color:#aaa; cursor:pointer;">Hacer otra reserva</button>
+                <button onclick="window.location.reload()" style="margin-top:20px; background:none; border:none; color:#999; cursor:pointer; font-size:0.8rem; text-decoration:underline;">Hacer otra reserva</button>
             </div>
         </div>
     </section>
 
     <section class="admin-area">
-        <h3 style="text-align:center; margin-bottom:20px;">Agenda de Hoy (Panel Admin)</h3>
-        <table class="admin-table">
-            <thead><tr><th>Cliente</th><th>Experta</th><th>Servicio</th><th>Día/Hora</th></tr></thead>
-            <tbody id="adminList"></tbody>
-        </table>
-        <div style="text-align: center; margin-top: 10px;">
-            <button onclick="localStorage.removeItem('lumiere_res'); updateAdmin();" style="font-size: 0.6rem; color: red; background: none; border: none; cursor:pointer;">[Limpiar Agenda]</button>
+        <h3 style="text-align:center; margin-bottom:25px; font-size:1.5rem;">Agenda General (Panel Interno)</h3>
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead><tr><th>Cliente</th><th>Estilista</th><th>Servicio</th><th>Fecha y Hora</th></tr></thead>
+                <tbody id="adminList"></tbody>
+            </table>
+        </div>
+        <div style="text-align: center; margin-top: 15px;">
+            <button onclick="localStorage.removeItem('lumiere_res'); updateAdmin();" style="font-size: 0.7rem; color: #cc5a71; background: none; border: none; cursor:pointer; font-weight:600;">[Limpiar Base de Datos]</button>
         </div>
     </section>
 
-    <footer style="background:var(--dark); color:white; padding:40px; text-align:center;">
-        <p>LUMIÈRE ESTÉTICA &copy; 2026</p>
+    <footer style="background:var(--dark); color:white; padding:35px 20px; text-align:center; font-size:0.8rem; letter-spacing:1px;">
+        <p>LUMIÈRE ESTÉTICA &copy; 2026 | ELEGANCIA & DETALLE</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({ duration: 800, once: true });
         lucide.createIcons();
 
-        let expert = "", service = "", price = 0, time = null;
+        let expert = "", expertPhone = "", service = "", price = 0, time = null;
         const hours = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30", "19:00"];
         const dateInput = document.getElementById('date');
+        
+        // Validar fecha mínima (hoy)
         dateInput.min = new Date().toISOString().split('T')[0];
 
-        function setExpert(n, el) {
+        // Función estilista modificada para capturar su teléfono específico
+        function setExpert(n, phone, el) {
             expert = n;
+            expertPhone = phone; 
             document.querySelectorAll('#especialistas + .grid-container .card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
             document.getElementById('expertName').innerText = n;
@@ -240,7 +298,7 @@
 
         function setService(n, p, el) {
             service = n; price = p;
-            document.querySelectorAll('.grid-container:nth-of-type(5) .card').forEach(c => c.classList.remove('selected'));
+            document.querySelectorAll('#servicios + .grid-container .card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
             document.getElementById('totalPrice').innerText = `Total: $${p}.00 MXN`;
         }
@@ -249,7 +307,7 @@
             const container = document.getElementById('slots');
             const d = dateInput.value;
             container.innerHTML = '';
-            if (!expert || !d) { container.innerHTML = '<p style="font-size:0.7rem; color:gray;">Falta elegir experta o fecha...</p>'; return; }
+            if (!expert || !d) { container.innerHTML = '<p style="font-size:0.75rem; color:#888; grid-column: 1/-1; text-align:center;">Elige estilista y fecha para ver horarios disponibles</p>'; return; }
 
             const db = JSON.parse(localStorage.getItem('lumiere_res') || '[]');
             const taken = db.filter(r => r.date === d && r.expert === expert).map(r => r.time);
@@ -272,7 +330,7 @@
 
         document.getElementById('bookingForm').onsubmit = function(e) {
             e.preventDefault();
-            if(!expert || !service || !time) return alert("Completa todos los pasos antes de agendar.");
+            if(!expert || !service || !time) return alert("Por favor selecciona Estilista, Servicio y Horario.");
 
             const res = {
                 name: document.getElementById('name').value,
@@ -284,33 +342,38 @@
             db.push(res);
             localStorage.setItem('lumiere_res', JSON.stringify(db));
 
-            // Mostrar Ticket
+            // Desplegar Ticket Animado
             document.getElementById('bookingForm').style.display = 'none';
             document.getElementById('ticket').style.display = 'block';
             document.getElementById('ticketInfo').innerHTML = `
-                <div class="ticket-item"><span>CLIENTA:</span> <span>${res.name}</span></div>
-                <div class="ticket-item"><span>ESPECIALISTA:</span> <span>${res.expert}</span></div>
-                <div class="ticket-item"><span>SERVICIO:</span> <span>${res.service}</span></div>
-                <div class="ticket-item"><span>FECHA:</span> <span>${res.date}</span></div>
-                <div class="ticket-item"><span>HORA:</span> <span>${res.time}</span></div>
+                <div class="ticket-item"><span>CLIENTA</span> <span>${res.name}</span></div>
+                <div class="ticket-item"><span>CONTACTO</span> <span>${res.tel}</span></div>
+                <div class="ticket-item"><span>ESTILISTA</span> <span>${res.expert}</span></div>
+                <div class="ticket-item"><span>SERVICIO</span> <span>${res.service}</span></div>
+                <div class="ticket-item"><span>FECHA</span> <span>${res.date}</span></div>
+                <div class="ticket-item"><span>HORA DE CITA</span> <span>${res.time} HRS</span></div>
             `;
             document.getElementById('ticketTotal').innerText = `TOTAL: $${res.price}.00 MXN`;
 
-            // Configurar WhatsApp
-            const miTelefono = "521234567890"; // <--- PON TU NÚMERO AQUÍ
-            const mensaje = `✨ *NUEVA CITA LUMIÈRE* ✨\n\n👤 *Cliente:* ${res.name}\n💅 *Servicio:* ${res.service}\n👩‍🎨 *Especialista:* ${res.expert}\n📅 *Fecha:* ${res.date}\n⏰ *Hora:* ${res.time}\n💰 *Total:* $${res.price}.00\n\n_Confirmar disponibilidad._`;
-            document.getElementById('wsConfirmBtn').href = `https://wa.me/${miTelefono}?text=${encodeURIComponent(mensaje)}`;
+            // Configurar WhatsApp dinámico directo a la estilista seleccionada
+            const mensaje = `✨ *NUEVA RESERVA LUMIÈRE* ✨\n\nHola *${res.expert}*, tienes una nueva cita agendada:\n\n👤 *Clienta:* ${res.name}\n📱 *Teléfono:* ${res.tel}\n💅 *Servicio:* ${res.service}\n📅 *Fecha:* ${res.date}\n⏰ *Hora:* ${res.time}\n💰 *Monto:* $${res.price}.00 MXN\n\n_Por favor, confirma en tu agenda personal._`;
+            
+            document.getElementById('wsConfirmBtn').href = `https://wa.me/${expertPhone}?text=${encodeURIComponent(mensaje)}`;
             
             updateAdmin();
-            window.scrollTo(0, document.getElementById('ticket').offsetTop - 100);
+            window.scrollTo(0, document.getElementById('ticket').offsetTop - 120);
         };
 
         function updateAdmin() {
             const db = JSON.parse(localStorage.getItem('lumiere_res') || '[]');
             const body = document.getElementById('adminList');
             body.innerHTML = '';
+            if(db.length === 0) {
+                body.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#999;">No hay citas agendadas el día de hoy</td></tr>`;
+                return;
+            }
             db.forEach(r => {
-                body.innerHTML += `<tr><td>${r.name}</td><td>${r.expert}</td><td>${r.service}</td><td>${r.date} ${r.time}</td></tr>`;
+                body.innerHTML += `<tr><td>${r.name}</td><td>${r.expert}</td><td>${r.service}</td><td>${r.date} a las ${r.time}</td></tr>`;
             });
         }
         updateAdmin();
